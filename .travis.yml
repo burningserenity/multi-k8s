@@ -1,0 +1,19 @@
+services:
+  - docker
+
+before_install:
+  - docker build -t burningserenity/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run burningserenity/react-test npm test -- --coverage --watchAll=false
+
+after_success:
+  - docker build -t burningserenity/multi-client ./client
+  - docker build -t burningserenity/multi-nginx ./nginx
+  - docker build -t burningserenity/multi-server ./server
+  - docker build -t burningserenity/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push burningserenity/multi-client
+  - docker push burningserenity/multi-nginx
+  - docker push burningserenity/multi-server
+  - docker push burningserenity/multi-worker
