@@ -22,7 +22,7 @@ deploy:
   provider: elasticbeanstalk
   region: "us-east-2"
   app: "mutli-docker"
-  env: "Multidocker-env"
+  env: "Mutlidocker-env"
   bucket_name: "elasticbeanstalk-us-east-2-492888762726"
   bucket_path: "mutli-docker"
   on:
