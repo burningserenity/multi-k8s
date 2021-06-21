@@ -17,3 +17,15 @@ after_success:
   - docker push burningserenity/multi-nginx
   - docker push burningserenity/multi-server
   - docker push burningserenity/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "https://s3.console.aws.amazon.com/s3/buckets/elasticbeanstalk-us-east-2-492888762726?region=us-east-2"
+  bucket_path: "docker-multi"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
