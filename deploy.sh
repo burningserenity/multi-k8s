@@ -9,5 +9,5 @@ docker push burningserenity/multi-worker:latest
 docker push burningserenity/multi-worker:$SHA
 kubectl apply -f k8s
 kubectl set image deployments/server-deployment server=burningserenity/multi-server:$SHA
-kubectl set image deployments/client-deployment server=burningserenity/multi-client:$SHA
-kubectl set image deployments/worker-deployment server=burningserenity/multi-worker:$SHA
+kubectl set image deployments/client-deployment client=burningserenity/multi-client:$SHA
+kubectl set image deployments/worker-deployment worker=burningserenity/multi-worker:$SHA
